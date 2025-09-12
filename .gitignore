@@ -1,0 +1,6 @@
+*/__pycache__/*
+*.xlsx
+*.pptx
+*.docx
+*.pdf
+*.txt
