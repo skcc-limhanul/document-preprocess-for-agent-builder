@@ -3,11 +3,12 @@ import os
 
 
 # Variables
-dir_path = 'c:/temporary_documents/' # Path of input documents directory
+input_path = 'c:/temporary_documents/input/' # Path of input documents directory
+output_path = 'c:/temporary_documents/output/' # Path of output documents directory
 max_doc = 30  # Number of input documents which merged to one output document
 
 # Create documents list to parse merged documents
-file_total = os.listdir(dir_path)
+file_total = os.listdir(input_path)
 file_list = []
 ix = 0
 while len(file_total) > 0:
@@ -22,7 +23,7 @@ while len(file_total) > 0:
 for ix, file_names in enumerate(file_list, start=1):
     documents_merged = ''
     for file_name in file_names:
-        file_path = f'{dir_path}{file_name}'
+        file_path = f'{input_path}/{file_name}'
         for _func_parser in [docx.parse_content, pdf.parse_content, pptx.parse_content, xlsx.parse_content]:
             try:
                 document_text = _func_parser(file_path)
@@ -33,5 +34,5 @@ for ix, file_names in enumerate(file_list, start=1):
                 print(f"\nFailed: {file_path}\n{e}\n")
     documents_merged = documents_merged.strip()
 
-    with open(f'documents_skbp_{ix}.txt', 'w', encoding='utf-8') as io_file:
+    with open(f'{output_path}/documents_skbp_{ix}.txt', 'w', encoding='utf-8') as io_file:
         io_file.write(documents_merged)
