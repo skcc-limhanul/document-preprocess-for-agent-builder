@@ -62,3 +62,4 @@
       * e.g. max_output = 2
         * Result : documents_parsed_01.txt, documents_parsed_02.txt (There are 2 plain texts outputs)
       * If the number of original documents is less than max_output, the number of output documents will be the number of original documents
+        * e.g. 2 original document and max_output = 5 → 2 output documents
