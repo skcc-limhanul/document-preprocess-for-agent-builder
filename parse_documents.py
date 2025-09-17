@@ -27,7 +27,7 @@ for ix, file_names in enumerate(file_list, start=1):
         for _func_parser in [docx.parse_content, pdf.parse_content, pptx.parse_content, xlsx.parse_content]:
             try:
                 document_text = _func_parser(file_path)
-                documents_merged = documents_merged + '\n' + document_text
+                documents_merged = documents_merged + '\n\n' + document_text
                 print(f"Done : {file_path}")
                 break
             except Exception as e:
