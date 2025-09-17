@@ -1,14 +1,16 @@
 from parser import docx, pdf, pptx, xlsx
 import os
-
+import math
 
 # Variables
+file_name_to_export = 'documents_skbp'
 input_path = 'c:/temporary_documents/input/' # Path of input documents directory
 output_path = 'c:/temporary_documents/output/' # Path of output documents directory
-max_doc = 30  # Number of input documents which merged to one output document
+max_output = 10  # Number of output documents for instant agent builder
 
 # Create documents list to parse merged documents
 file_total = os.listdir(input_path)
+max_doc = math.ceil(len(file_total) / max_output)
 file_list = []
 ix = 0
 while len(file_total) > 0:
@@ -27,12 +29,12 @@ for ix, file_names in enumerate(file_list, start=1):
         for _func_parser in [docx.parse_content, pdf.parse_content, pptx.parse_content, xlsx.parse_content]:
             try:
                 document_text = _func_parser(file_path)
-                documents_merged = documents_merged + '\n' + document_text
+                documents_merged = documents_merged + '\n\n' + document_text
                 print(f"Done : {file_path}")
                 break
             except Exception as e:
                 print(f"\nFailed: {file_path}\n{e}\n")
     documents_merged = documents_merged.strip()
 
-    with open(f'{output_path}/documents_skbp_{ix}.txt', 'w', encoding='utf-8') as io_file:
+    with open(f'{output_path}/{file_name_to_export}_{ix}.txt', 'w', encoding='utf-8') as io_file:
         io_file.write(documents_merged)

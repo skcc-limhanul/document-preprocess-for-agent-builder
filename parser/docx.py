@@ -10,6 +10,13 @@ def _clean_text(text):
 
 
 def parse_content(file_path):
+    '''
+    Extracts plain text and tables from a MS Word file.
+    Parameters:
+    * file_path : The path to docx
+    Returns:
+    * parsed_text : Parsed contents like plain texts and markdown style tables
+    '''
     parsed_text = ''
     doc = Document(file_path)
     main_document_part = doc.part
