@@ -4,3 +4,6 @@
 *.docx
 *.pdf
 *.txt
+
+documents/
+parsed/
